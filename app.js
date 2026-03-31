@@ -608,7 +608,7 @@ function signup(data) {
   localStorage.setItem('mc_users', JSON.stringify(users));
   saveUser(user);
   updateNavLinks(currentPage);
-  showToast('success', 'Account Created!', `Welcome to MediConnect, ${user.name}!`);
+  showToast('success', 'Account Created!', `Welcome, ${user.name}! You can now log in with ${user.email}`);
   navigate('dashboard');
   return true;
 }
@@ -1198,7 +1198,7 @@ function handleLogin(e) {
   setTimeout(() => {
     const success = login(email, password);
     if (!success) {
-      showFieldError('loginGeneralErr', 'Invalid email or password. Try demo@mediconnect.com / demo123');
+      showFieldError('loginGeneralErr', 'Invalid email or password. Please check your credentials or create a new account.');
       btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
       btn.disabled = false;
     }
@@ -1350,7 +1350,7 @@ function handleSignup(e) {
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showFieldError('signupEmailErr', 'Please enter a valid email.'); document.getElementById('signupEmail').classList.add('error'); valid = false; }
   if (!password || password.length < 6) { showFieldError('signupPasswordErr', 'Password must be at least 6 characters.'); document.getElementById('signupPassword').classList.add('error'); valid = false; }
   if (password !== confirm) { showFieldError('signupConfirmErr', 'Passwords do not match.'); document.getElementById('signupConfirm').classList.add('error'); valid = false; }
-  if (!terms) { showFieldError('signupTermsErr', 'You must agree to the terms.'); valid = false; }
+  if (!terms) { showFieldError('signupTermsErr', 'You must agree to the terms to continue.'); valid = false; }
   if (!valid) return;
   const btn = document.getElementById('signupBtn');
   btn.innerHTML = '<span class="spinner"></span> Creating account...';
@@ -1358,7 +1358,7 @@ function handleSignup(e) {
   setTimeout(() => {
     const success = signup({ name: `${first} ${last}`, firstName: first, lastName: last, email, phone, password, role });
     if (!success) {
-      showFieldError('signupEmailErr', 'This email is already registered.');
+      showFieldError('signupEmailErr', 'An account with this email already exists. Please login instead.');
       document.getElementById('signupEmail').classList.add('error');
       btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
       btn.disabled = false;
@@ -1958,7 +1958,6 @@ function renderAppointmentsList(appts, type) {
 
   return `<div class="appointments-list">
     ${appts.sort((a, b) => new Date(b.date) - new Date(a.date)).map(a => {
-      const dateStr = formatDate(a.date);
       const isPast = new Date(a.date) < new Date(new Date().toDateString());
       const displayStatus = a.status === 'cancelled' ? 'cancelled' : (isPast ? 'completed' : 'upcoming');
       const statusLabel = { upcoming: 'Upcoming', completed: 'Completed', cancelled: 'Cancelled' }[displayStatus];
