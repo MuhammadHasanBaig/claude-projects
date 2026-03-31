@@ -230,6 +230,10 @@ input, select, textarea {
   align-items: center;
   justify-content: center;
   transition: all var(--transition);
+  position: relative;
+  z-index: 1001;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
 .theme-toggle:hover {
@@ -237,6 +241,10 @@ input, select, textarea {
   color: white;
   border-color: var(--primary);
   transform: rotate(20deg);
+}
+
+.mobile-theme-row {
+  display: none;
 }
 
 .hamburger {
@@ -2823,17 +2831,17 @@ input, select, textarea {
     top: 70px;
     left: 0;
     right: 0;
-    background: var(--navbar-bg);
-    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-primary);
+    border-bottom: 2px solid var(--border-color);
     flex-direction: column;
     align-items: stretch;
-    padding: 16px 24px;
+    padding: 12px 20px 20px;
     gap: 4px;
     transform: translateY(-110%);
     opacity: 0;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(12px);
-    z-index: 999;
+    transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+    z-index: 998;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
   }
 
   .nav-links.open {
@@ -2841,9 +2849,52 @@ input, select, textarea {
     opacity: 1;
   }
 
-  .nav-link { padding: 12px 16px; border-radius: var(--radius-sm); }
+  .nav-link { padding: 12px 16px; border-radius: var(--radius-sm); font-size: 0.95rem; }
+
+  .nav-actions {
+    position: relative;
+    z-index: 1001;
+  }
 
   .hamburger { display: flex; }
+
+  /* Mobile theme toggle row inside dropdown */
+  .mobile-theme-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    margin-top: 8px;
+    border-top: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+  }
+
+  .mobile-theme-row span {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .mobile-theme-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 50px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .mobile-theme-btn:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+  }
 
   .features-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
