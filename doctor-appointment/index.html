@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MediConnect - Online Doctor Appointments</title>
+  <meta name="description" content="Book appointments with top doctors online. Find specialists, check availability, and schedule your visit in minutes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="light-mode">
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a class="nav-logo" href="#" onclick="navigate('home'); return false;">
+        <div class="logo-icon">
+          <i class="fas fa-plus"></i>
+        </div>
+        <span class="logo-text">Medi<span class="logo-accent">Connect</span></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#" class="nav-link active" data-page="home" onclick="navigate('home'); return false;">Home</a></li>
+        <li><a href="#" class="nav-link" data-page="doctors" onclick="navigate('doctors'); return false;">Find Doctors</a></li>
+        <li class="nav-auth-item" id="navLoginItem"><a href="#" class="nav-link" data-page="login" onclick="navigate('login'); return false;">Login</a></li>
+        <li class="nav-auth-item" id="navSignupItem"><a href="#" class="nav-link nav-btn-signup" data-page="signup" onclick="navigate('signup'); return false;">Sign Up</a></li>
+        <li class="nav-user-item hidden" id="navDashboardItem"><a href="#" class="nav-link" data-page="dashboard" onclick="navigate('dashboard'); return false;"><i class="fas fa-calendar-check"></i> My Appointments</a></li>
+        <li class="nav-user-item hidden" id="navLogoutItem"><a href="#" class="nav-link nav-btn-logout" onclick="logout(); return false;"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle dark/light mode">
+          <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+        <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main App Container -->
+  <main id="app">
+    <!-- Views are rendered here by app.js -->
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" id="footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="logo-icon small">
+              <i class="fas fa-plus"></i>
+            </div>
+            <span class="logo-text">Medi<span class="logo-accent">Connect</span></span>
+          </div>
+          <p class="footer-tagline">Your health, our priority. Connect with top doctors anytime, anywhere.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#" onclick="navigate('home'); return false;">Home</a></li>
+            <li><a href="#" onclick="navigate('doctors'); return false;">Find Doctors</a></li>
+            <li><a href="#" onclick="navigate('login'); return false;">Login</a></li>
+            <li><a href="#" onclick="navigate('signup'); return false;">Sign Up</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-heading">Specializations</h4>
+          <ul class="footer-links">
+            <li><a href="#">Cardiology</a></li>
+            <li><a href="#">Dermatology</a></li>
+            <li><a href="#">Neurology</a></li>
+            <li><a href="#">Orthopedics</a></li>
+            <li><a href="#">Pediatrics</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-heading">Contact</h4>
+          <ul class="footer-contact">
+            <li><i class="fas fa-map-marker-alt"></i> 123 Health Ave, New York</li>
+            <li><i class="fas fa-phone"></i> +1 (800) MEDI-CON</li>
+            <li><i class="fas fa-envelope"></i> support@mediconnect.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 MediConnect. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
