@@ -1,0 +1,11 @@
+{
+  "name": "mediconnect-agent",
+  "version": "1.0.0",
+  "description": "Automation agent for MediConnect doctor appointment booking",
+  "scripts": {
+    "start": "node agent-book-appointment.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.44.0"
+  }
+}
