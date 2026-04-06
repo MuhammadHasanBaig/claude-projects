@@ -25,7 +25,7 @@ let bookingState = {
 const doctors = [
   {
     id: 1,
-    name: 'Dr. Sarah Mitchell',
+    name: 'Dr. Sarah',
     photo: 'https://ui-avatars.com/api/?name=Sarah+Mitchell&background=4F46E5&color=fff&size=200',
     specialization: 'Cardiology',
     diseases_treated: ['Heart Disease', 'Hypertension', 'Arrhythmia', 'Coronary Artery Disease', 'Heart Failure'],
