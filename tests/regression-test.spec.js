@@ -10,8 +10,8 @@ test('basic Regression: Register and login @regression', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Smith' }).press('Tab');
   await page.getByRole('textbox', { name: 'your@email.com' }).fill('test@gmail.com');
   await page.getByRole('textbox', { name: 'your@email.com' }).press('Tab');
-  await page.getByRole('textbox', { name: '+1 (555) 000-' }).fill('12345678901');
-  await page.getByRole('textbox', { name: '+1 (555) 000-' }).press('Tab');
+  await page.getByRole('textbox', { name: '03001234567' }).fill('12345678901');
+  await page.getByRole('textbox', { name: '03001234567' }).press('Tab');
   await page.getByRole('textbox', { name: 'At least 6 characters' }).fill('12345678');
   await page.getByRole('textbox', { name: 'At least 6 characters' }).press('Tab');
   await page.getByRole('textbox', { name: 'Repeat password' }).click();
