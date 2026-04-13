@@ -1291,8 +1291,9 @@ function renderSignup() {
               <label class="form-label">Phone Number</label>
               <div class="form-input-wrap">
                 <i class="fas fa-phone form-input-icon"></i>
-                <input type="tel" class="form-input" id="signupPhone" placeholder="+1 (555) 000-0000" />
+                <input type="tel" class="form-input" id="signupPhone" placeholder="03001234567" maxlength="11" />
               </div>
+              <div class="form-error hidden" id="signupPhoneErr"><i class="fas fa-exclamation-circle"></i> <span></span></div>
             </div>
 
             <div class="form-group">
@@ -1348,14 +1349,16 @@ function handleSignup(e) {
   const terms = document.getElementById('signupTerms').checked;
   const role = document.querySelector('input[name="role"]:checked')?.value || 'patient';
   let valid = true;
-  clearFormErrors(['signupFirstErr', 'signupLastErr', 'signupEmailErr', 'signupPasswordErr', 'signupConfirmErr', 'signupTermsErr']);
+  clearFormErrors(['signupFirstErr', 'signupLastErr', 'signupEmailErr', 'signupPhoneErr', 'signupPasswordErr', 'signupConfirmErr', 'signupTermsErr']);
   [document.getElementById('signupFirst'), document.getElementById('signupLast'),
-   document.getElementById('signupEmail'), document.getElementById('signupPassword'),
+   document.getElementById('signupEmail'), document.getElementById('signupPhone'),
+   document.getElementById('signupPassword'),
    document.getElementById('signupConfirm')].forEach(el => el.classList.remove('error'));
 
   if (!first) { showFieldError('signupFirstErr', 'First name is required.'); document.getElementById('signupFirst').classList.add('error'); valid = false; }
   if (!last) { showFieldError('signupLastErr', 'Last name is required.'); document.getElementById('signupLast').classList.add('error'); valid = false; }
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showFieldError('signupEmailErr', 'Please enter a valid email.'); document.getElementById('signupEmail').classList.add('error'); valid = false; }
+  if (phone && !/^\d{11}$/.test(phone)) { showFieldError('signupPhoneErr', 'Phone number must be exactly 11 digits.'); document.getElementById('signupPhone').classList.add('error'); valid = false; }
   if (!password || password.length < 6) { showFieldError('signupPasswordErr', 'Password must be at least 6 characters.'); document.getElementById('signupPassword').classList.add('error'); valid = false; }
   if (password !== confirm) { showFieldError('signupConfirmErr', 'Passwords do not match.'); document.getElementById('signupConfirm').classList.add('error'); valid = false; }
   if (!terms) { showFieldError('signupTermsErr', 'You must agree to the terms to continue.'); valid = false; }
